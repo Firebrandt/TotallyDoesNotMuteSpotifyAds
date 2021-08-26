@@ -11,7 +11,7 @@ from spotipy.oauth2 import SpotifyOAuth
 scope = 'user-read-currently-playing' + ' user-read-playback-state' + ' user-modify-playback-state'
 
 #Create a connection to spotify. Verify by identifying current user.
-spotifyClient = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='737d8b22db9c448eac2d89b1c775c619', client_secret='4e402f8f79544617b34e3826f143688e', redirect_uri='http://google.com', scope=scope))
+spotifyClient = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id='FAKE_TOKEN', client_secret='FAKE_TOKEN', redirect_uri='http://google.com', scope=scope))
 print("Connected to spotify client! Current user: " + spotifyClient.current_user()['display_name'])
 
 # Grab the current playback's JSON data, and distinguish between regular playbacks and icky ads.
