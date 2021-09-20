@@ -19,19 +19,21 @@ print("Connected to spotify client! Current user: " + spotify_client.current_use
 spotify_state = " "
 expected_playback_name = ''
 
-while True:
-    #Get current playback. If it times out, keep trying until we've got what we need.
+
+def get_current_playback() -> dict:
+    """Returns the spotify user's current playback regardless of time out errors. JSON formatted to a dict."""
     successful_retrieval = False
     while successful_retrieval == False:
-        #problem here.
         try:
-            #print("Now attempting playback retrieval!")
+            # print("Now attempting playback retrieval!")
             current_playback_json = spotify_client.current_playback()
             successful_retrieval = True
+            return current_playback_json
         except ReadTimeout:
-            print("Spotify seems to have timed out on us. Hm. Whatever, trying again!")
-            current_playback_json = spotify_client.current_playback()
+            print("Spotify seems to have timed out on us. Hm... We will try again!") #TODO: Maybe someday I'll have a more elegant solution than this - not sure why the readtimeout happens.
 
+while True:
+    current_playback_json = get_current_playback()
     #Identify whether an ad is playing, mute/unmute accordingly.
     try:
         current_playback_name = current_playback_json['item']['name']
