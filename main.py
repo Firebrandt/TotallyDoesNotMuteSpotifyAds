@@ -18,7 +18,7 @@ print("Connected to spotify client! Current user: " + spotify_client.current_use
 # Grab the current playback's JSON data, and distinguish between regular playbacks and icky ads.
 spotify_state = " "
 expected_playback_name = ''
-
+pause_interval = 0.5
 
 def get_current_playback() -> dict:
     """Returns the spotify user's current playback regardless of time out errors. JSON formatted to a dict."""
@@ -49,7 +49,7 @@ while True:
         for session in sessions:
             volume = session.SimpleAudioVolume
             if session.Process and session.Process.name() == 'Spotify.exe' and volume.GetMute() == 1:
-                time.sleep(0.5) #current_playback() updates slightly before playbacks end. This line makes sure we don't accidentally unmute during the last bit of an ad due to current_playback() prematurely updating before spotify client switches off the ad.
+                time.sleep(0.75) #current_playback() updates slightly before playbacks end. This line makes sure we don't accidentally unmute during the last bit of an ad due to current_playback() prematurely updating before spotify client switches off the ad.
                 volume.SetMute(0, None)
 
     # Trying to get the current playback's name returns a type error when you use it during an ad; ads don't seem to support it. Probably spotify devs trying to make me pay money, hmph!
@@ -68,8 +68,7 @@ while True:
             if session.Process and session.Process.name() == 'Spotify.exe':
                 volume.SetMute(1, None)
     #Repeating every half second (assuming negligible delay for code execution) is a simple, (still lightweight) way to make it detect track change at reasonable precision.
-    time.sleep(0.5)
+    time.sleep(pause_interval)
 
-
-
+#TODO: Add auto-stop checks when spotify is closed. Start when opened. and playing.
 #TODO: the problem seems to be that I'm getting clowned by the spotify rate limit. Will have to look at that.
