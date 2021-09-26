@@ -1,0 +1,4 @@
+spotipy~=2.19.0
+requests~=2.26.0
+pycaw~=20181226
+py2exe~=0.10.4.1

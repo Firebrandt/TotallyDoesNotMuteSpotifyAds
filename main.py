@@ -52,7 +52,7 @@ while True:
                 time.sleep(0.75) #current_playback() updates slightly before playbacks end. This line makes sure we don't accidentally unmute during the last bit of an ad due to current_playback() prematurely updating before spotify client switches off the ad.
                 volume.SetMute(0, None)
 
-    # Trying to get the current playback's name returns a type error when you use it during an ad; ads don't seem to support it. Probably spotify devs trying to make me pay money, hmph!
+    # Trying to get the current playback's name returns a type error when you use it during an ad; ads don't seem to spip install pyinstallerupport it. Probably spotify devs trying to make me pay money, hmph!
     # Anyway since they seem to only do that for ads, we can error handling to identify them, nasty as that sounds.
     except TypeError:
 
