@@ -10,4 +10,4 @@ Windows may prevent the program from writing a spotify token to .cache, (because
 
 If you are running it, follow the directions given to you in the console when the program launches.
 
-
+The source code WILL NOT RUN as given. This is because I've hidden my spotify client_id and client_secret - those are keys. You would have to sub in your own to run the source code. Get them from spotify's dev site --> dashboard. You may have to make a dev account for this.
