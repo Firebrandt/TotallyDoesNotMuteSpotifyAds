@@ -69,6 +69,3 @@ while True:
                 volume.SetMute(1, None)
     #Repeating every half second (assuming negligible delay for code execution) is a simple, (still lightweight) way to make it detect track change at reasonable precision.
     time.sleep(pause_interval)
-
-#TODO: Add auto-stop checks when spotify is closed. Start when opened. and playing.
-#TODO: the problem seems to be that I'm getting clowned by the spotify rate limit. Will have to look at that.
